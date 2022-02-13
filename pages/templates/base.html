@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DyqanTaxi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;1,100;1,300;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+</head>
+<body>
+    <header>
+        <h1>
+            <a href="{% url 'home' %}">DyqanTaxi</a>
+        </h1>
+        {% comment %} nav>ul>li*5>a {% endcomment %}
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'product_list' %}">Catalogue</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+            </ul>
+        </nav>
+        <section>
+            <form action="" method="get">
+                <input type="search" name="q">
+                <button type="submit">Search</button>
+            </form>
+        </section>
+    </header>
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+    <footer>
+        <p>Copyright &copy; 2022 &mdash; SDA Py AL TR 4</p>
+    </footer>
+</body>
+</html>

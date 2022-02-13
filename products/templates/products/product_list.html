@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Product Catalogue</h1>
+<ul>
+    {% for cat in categories %}
+        <li><a href="">{{ cat.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% for page in page_obj.paginator.page_range %}
+<a href="{% url 'product_list' %}?page={{ page }}">{{ page }}</a>
+{% endfor %}
+
+<section class="product-list">
+{% for product in page_obj %}
+    <div class="product-item">
+        <img src="{{ product.picture.url }}"
+            alt="{{ product.name }}"
+            width="256"
+            height="256">
+        <h4>{{ product.name }}</h4>
+        <p class="product-item-code">Kodi: {{ product.code }}</p>
+        <p class="product-item-price">${{ product.price }}</p>
+    </div>
+{% endfor %}
+</section>
+{% endblock content %}
