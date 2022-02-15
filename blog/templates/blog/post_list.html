@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Blog</h1>
+{% for post in page_obj %}
+<article>
+    <header>
+        <h2>
+            <a class="post-title" href="{% url 'blog:post_details' slug=post.slug %}">{{ post.title }}</a>
+        </h2>
+    </header>
+    <div>{{ post.content_html|safe }}</div>
+</article>
+{% empty %}
+<p>No posts have been published yet.</p>
+{% endfor %}
+{% endblock content %}
