@@ -12,15 +12,10 @@ class Command(BaseCommand):
     help = "Create some fake products"
 
     def add_arguments(self, parser):
-        parser.add_argument(
-            'product_count',
-            type=int,
-            nargs='?',
-            default=10
-        )
+        parser.add_argument("product_count", type=int, nargs="?", default=10)
 
     def handle(self, *args, **options):
-        product_count = options.get('product_count', 10)
+        product_count = options.get("product_count", 10)
 
         fake = Faker()
 

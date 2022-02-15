@@ -9,20 +9,20 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.TextField(null=True)
     picture = models.ImageField(upload_to="products")
-    category = models.ForeignKey('Category', null=True,
-            on_delete=models.SET_NULL)
+    category = models.ForeignKey("Category", null=True, on_delete=models.SET_NULL)
 
-    # class Meta:
-    #     db_table = "products"
+    class Meta:
+        verbose_name = "product"
+        verbose_name_plural = "products"
+        # db_table = "products"
 
     def __str__(self):
         return self.name
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=30,
-                            null=False, unique=True)
-    slug = models.SlugField()
+    name = models.CharField(max_length=30, null=False, unique=True)
+    slug = models.SlugField(unique=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:
