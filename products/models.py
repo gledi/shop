@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.text import slugify
+from django.utils.text import slugify, Truncator
 
 
 class Product(models.Model):
@@ -35,3 +35,19 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
+
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField()
+    comment = models.TextField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.short_comment
+
+    @property
+    def short_comment(self):
+        truncator = Truncator(self.comment)
+        return truncator.chars(20)

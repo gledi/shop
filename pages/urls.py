@@ -4,8 +4,6 @@ from pages import views
 
 
 urlpatterns = [
-    path("", views.home, name='home'),
-    path("about/", views.about, name="about"),
-    path("contact-us/", views.contact, name="contact"),
-    path("privacy-policy/", views.privacy_policy, name="privacy")
+    path("", views.HomeView.as_view(), name="home"),
+    path("pages/<page_name>/", views.PageView.as_view(), name="page"),
 ]

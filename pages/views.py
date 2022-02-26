@@ -1,18 +1,19 @@
-from django.http import HttpRequest, HttpResponse, JsonResponse
+from re import template
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
 def home(request: HttpRequest) -> HttpResponse:
     return render(request, "pages/home.html")
 
 
-def about(request):
-    return render(request, 'pages/about.html')
+class HomeView(TemplateView):
+    template_name = "pages/home.html"
 
 
-def contact(request):
-    return render(request, "pages/contact.html")
-
-
-def privacy_policy(request):
-    return render(request, "pages/privacy.html")
+class PageView(TemplateView):
+    def get_template_names(self):
+        page_name = self.kwargs.get("page_name", "home")
+        template_name = page_name.lower().replace("-", "_").strip()
+        return [f"pages/{template_name}.html"]

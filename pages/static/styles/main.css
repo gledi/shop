@@ -181,3 +181,15 @@ article > header > h2 {
 article > header > h2 > a {
     text-decoration: none;
 }
+
+
+.product-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-details-header > a {
+    font-size: 18px;
+    font-weight: 600;
+}

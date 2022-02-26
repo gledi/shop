@@ -19,7 +19,7 @@
             alt="{{ product.name }}"
             width="256"
             height="256">
-        <h4>{{ product.name }}</h4>
+        <a href="{% url 'product_details' pk=product.pk %}">{{ product.name }}</a>
         <p class="product-item-code">Kodi: {{ product.code }}</p>
         <p class="product-item-price">${{ product.price }}</p>
     </div>

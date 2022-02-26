@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from products.models import Product, Category
+from products.models import Product, Category, Review
 
 
 @admin.register(Product)
@@ -16,3 +16,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category, CategoryAdmin)
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ["short_comment", "approved"]
+    list_editable = ["approved"]
