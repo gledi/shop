@@ -8,8 +8,9 @@
     <title>DyqanTaxi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;1,100;1,300;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/highlight.css' %}">
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
 </head>
 <body>
@@ -22,12 +23,13 @@
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'product_list' %}">Catalogue</a></li>
+                <li><a href="{% url 'blog:post_list' %}">Blog</a></li>
                 <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
             </ul>
         </nav>
-        <section>
+        <section class="search-global">
             <form action="" method="get">
                 <input type="search" name="q">
                 <button type="submit">Search</button>
@@ -37,8 +39,9 @@
     <main>
         {% block content %}{% endblock content %}
     </main>
+    
     <footer>
-        <p>Copyright &copy; 2022 &mdash; SDA Py AL TR 4</p>
+        <p>Copyright &copy; 2022 &mdash; SDA Python Tirana AL 4</p>
     </footer>
 </body>
 </html>

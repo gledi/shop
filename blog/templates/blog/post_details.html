@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<article>
+    <header>
+        <h2>{{ post.title }}</h2>
+        <a href="{% url 'blog:post_list' %}">&laquo; Back to posts</a>
+    </header>
+    <div>{{ post.content_html|safe }}</div>
+</article>
+{% endblock content %}

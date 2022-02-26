@@ -1,8 +1,10 @@
 Django==4.0.2
 Pillow==9.0.1
+mistune==2.0.2
+Pygments==2.11.2
 
 # development dependencies
 ipython==8.0.1
 black==22.1.0
 flake8==4.0.1
-Faker==12.3.0
+Faker==13.2.0
