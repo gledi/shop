@@ -193,3 +193,8 @@ article > header > h2 > a {
     font-size: 18px;
     font-weight: 600;
 }
+
+.form-error {
+    color: #cd1811;
+    font-weight: 500;
+}

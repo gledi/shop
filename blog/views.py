@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, Http404
 from django.core.paginator import Paginator
 
-from blog.models import Post
+from blog.models import Post, Comment
+from blog.forms import CommentForm
 
 
 def get_post_list(request: HttpRequest) -> HttpResponse:
@@ -24,4 +25,22 @@ def get_post_details(request: HttpRequest, slug: str) -> HttpResponse:
         post = Post.objects.get(slug=slug)
     except Post.DoesNotExist:
         raise Http404("Post not found")
-    return render(request, "blog/post_details.html", context={"post": post})
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = Comment(
+                post=post,
+                comment=form.cleaned_data["comment"],
+            )
+            comment.save()
+            return redirect("blog:post_details", slug=post.slug)
+    else:
+        form = CommentForm()
+
+    comments = Comment.objects.filter(post=post).filter(approved=True).all()
+    return render(
+        request,
+        "blog/post_details.html",
+        context={"post": post, "form": form, "comments": comments},
+    )

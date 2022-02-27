@@ -3,10 +3,15 @@ from django.contrib import admin
 from products.models import Product, Category, Review
 
 
+class ReviewInline(admin.TabularInline):
+    model = Review
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ("name", "code", "price")
     list_editable = ("price",)
+    inlines = [ReviewInline]
 
 
 class CategoryAdmin(admin.ModelAdmin):

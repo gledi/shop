@@ -41,10 +41,6 @@ def get_product_details(request, pk):
 @csrf_exempt
 def review_product(request: HttpRequest, pk):
     product = Product.objects.get(pk=pk)
-    print(request.method)
-    print(request.POST)
-    print("rating =", request.POST.get("rating"))
-    print("comment =", request.POST.get("comment"))
     if request.method == "POST":
         rating = request.POST.get("rating")
         comment = request.POST.get("comment")

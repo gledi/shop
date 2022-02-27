@@ -8,4 +8,28 @@
     </header>
     <div>{{ post.content_html|safe }}</div>
 </article>
+<hr>
+<h3>Comments</h3>
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+    <div>
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+            {% for error in field.errors %}
+            <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit">Comment</button>
+</form>
+
+{% for comment in comments %}
+<p>{{ comment.comment }}</p>
+{% empty %}
+<p>No comments yet!</p>
+{% endfor %}
+
 {% endblock content %}

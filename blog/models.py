@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import Truncator
 
 from utils.renderers import markdown
 
@@ -26,3 +27,24 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("blog:post_details", kwargs={"slug": self.slug})
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, null=True, on_delete=models.SET_NULL)
+    comment = models.TextField(null=False)
+    approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "comment"
+        verbose_name_plural = "comments"
+        db_table = "comments"
+
+    def __str__(self):
+        return self.short
+
+    @property
+    def short(self):
+        truncator = Truncator(self.comment)
+        return truncator.chars(20)
