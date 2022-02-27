@@ -29,12 +29,21 @@
                 <li><a href="{% url 'page' page_name='privacy-policy' %}">Privacy Policy</a></li>
             </ul>
         </nav>
-        <section class="search-global">
+        <section class="user-info">
+            {% if user.is_authenticated %}
+                <span>Welcome {{ user.get_full_name }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="">Register</a>
+            {% endif %}
+        </section>
+        {% comment %} <section class="search-global">
             <form action="" method="get">
                 <input type="search" name="q">
                 <button type="submit">Search</button>
             </form>
-        </section>
+        </section> {% endcomment %}
     </header>
     <main>
         {% block content %}{% endblock content %}

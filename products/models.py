@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify, Truncator
+from django.conf import settings
 
 
 class Product(models.Model):
@@ -10,6 +11,11 @@ class Product(models.Model):
     description = models.TextField(null=True)
     picture = models.ImageField(upload_to="products")
     category = models.ForeignKey("Category", null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
 
     class Meta:
         verbose_name = "product"

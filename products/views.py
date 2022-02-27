@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.http import HttpRequest
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import redirect_to_login
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.urls import reverse
 
 from products.models import Category, Product, Review
-from products.forms import ReviewForm
+from products.forms import ProductForm, ReviewForm
 
 
 class ProductListView(ListView):
@@ -32,10 +37,26 @@ def get_products(request):
     )
 
 
-def get_product_details(request, pk):
+class ProductDetailView(DetailView):
+    model = Product
+    pk_url_kwarg = "id"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["developer"] = "Gledi"
+        return context
+
+
+def get_product_details(request: HttpRequest, pk):
     product = Product.objects.get(pk=pk)
 
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            return redirect_to_login(
+                request.path,
+                reverse("login"),
+                REDIRECT_FIELD_NAME,
+            )
         form = ReviewForm(request.POST)
         if form.is_valid():
             review = Review(
@@ -58,4 +79,22 @@ def get_product_details(request, pk):
             "reviews": reviews,
             "form": form,
         },
+    )
+
+
+@login_required
+def add_product(request: HttpRequest):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = Product(**form.cleaned_data)
+            product.user = request.user
+            product.save()
+            return redirect("product_details", pk=product.pk)
+    else:
+        form = ProductForm()
+    return render(
+        request,
+        "products/product_form.html",
+        context={"form": form},
     )

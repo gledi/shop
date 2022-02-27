@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Product Catalogue</h1>
+<div>
+    <h1>Product Catalogue</h1>
+    <a href="{% url 'product_add' %}">Add new Product</a>
+</div>
 <ul>
     {% for cat in categories %}
         <li><a href="">{{ cat.name }}</a></li>
