@@ -9,6 +9,7 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("products/", include("products.urls")),
     path("posts/", include("blog.urls")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 if settings.DEBUG:

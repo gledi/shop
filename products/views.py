@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpRequest, HttpResponse
+from django.views.generic import ListView
 
 from products.models import Category, Product, Review
+from products.forms import ReviewForm
+
+
+class ProductListView(ListView):
+    model = Product
+    paginate_by = 9
 
 
 def get_products(request):
@@ -29,22 +34,28 @@ def get_products(request):
 
 def get_product_details(request, pk):
     product = Product.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = Review(
+                product=product,
+                rating=form.cleaned_data["rating"],
+                comment=form.cleaned_data["comment"],
+            )
+            review.save()
+            return redirect("product_details", pk=product.pk)
+    else:
+        form = ReviewForm()
+
     reviews = Review.objects.filter(approved=True).filter(product=product).all()
 
     return render(
         request,
         "products/product_details.html",
-        context={"product": product, "reviews": reviews},
+        context={
+            "product": product,
+            "reviews": reviews,
+            "form": form,
+        },
     )
-
-
-@csrf_exempt
-def review_product(request: HttpRequest, pk):
-    product = Product.objects.get(pk=pk)
-    if request.method == "POST":
-        rating = request.POST.get("rating")
-        comment = request.POST.get("comment")
-        review = Review(product=product, rating=rating, comment=comment)
-        review.save()
-        return redirect("product_details", pk=product.pk)
-    return render(request, "products/product_review.html", context={"product": product})

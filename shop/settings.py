@@ -19,18 +19,23 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd party apps
+    "debug_toolbar",
+    # local apps
     "pages",
     "products",
     "blog",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -118,3 +123,6 @@ MEDIA_ROOT = BASE_DIR / "uploads"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 PAGE_TITLE = "Dyqan Taxi"
+
+
+INTERNAL_IPS = ["127.0.0.1"]
