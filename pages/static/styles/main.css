@@ -198,3 +198,11 @@ article > header > h2 > a {
     color: #cd1811;
     font-weight: 500;
 }
+
+p.error {
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid red;
+    color: #cd1811;
+    padding: 4px 9px;
+}

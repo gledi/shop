@@ -3,6 +3,7 @@ Pillow==9.0.1
 mistune==2.0.2
 Pygments==2.11.2
 django-debug-toolbar==3.2.4
+django-extensions==3.1.5
 
 # development dependencies
 ipython==8.0.1

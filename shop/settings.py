@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd party apps
     "debug_toolbar",
+    "django_extensions",
     # local apps
     "pages",
     "products",
@@ -128,3 +129,5 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 INTERNAL_IPS = ["127.0.0.1"]
+
+SHELL_PLUS_PRINT_SQL = True
