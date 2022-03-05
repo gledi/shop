@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ product_user.get_full_name }} Products</h1>
+<ul>
+    {% for product in product_user.product_set.all %}
+    <li>{{ product.id }}. {{ product.name }} (${{ product.price }})</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

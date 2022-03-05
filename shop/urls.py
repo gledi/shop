@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from products.views import get_user_products
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -10,6 +11,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("products/", include("products.urls")),
     path("posts/", include("blog.urls")),
+    path("users/<username>/products/", get_user_products, name="user_products"),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
 

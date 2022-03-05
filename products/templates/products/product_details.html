@@ -12,6 +12,7 @@
 <p class="">Kodi: {{ product.code }}</p>
 <p class="">${{ product.price }}</p>
 <p class="">{{ product.description }}</p>
+<p>Added by <a href="{% url 'user_products' username=product.user.username %}">{{ product.user.get_full_name }}</a></p>
 <hr>
 <h2>Reviews</h2>
 <form action="" method="post" novalidate>

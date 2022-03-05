@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # 3rd party apps
     "debug_toolbar",
     "django_extensions",
+    "fontawesomefree",
     # local apps
     "pages",
     "products",
@@ -60,6 +61,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "pages.context_processors.page_title",
+                "pages.context_processors.msg_icon",
             ],
         },
     },

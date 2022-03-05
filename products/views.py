@@ -4,11 +4,15 @@ from django.views.generic import ListView, DetailView
 from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import redirect_to_login
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth import REDIRECT_FIELD_NAME, get_user_model
 from django.urls import reverse
+from django.contrib import messages
 
 from products.models import Category, Product, Review
 from products.forms import ProductForm, ReviewForm
+
+
+User = get_user_model()
 
 
 class ProductListView(ListView):
@@ -48,7 +52,7 @@ class ProductDetailView(DetailView):
 
 
 def get_product_details(request: HttpRequest, pk):
-    product = Product.objects.get(pk=pk)
+    product = Product.objects.select_related("user").get(pk=pk)
 
     if request.method == "POST":
         if not request.user.is_authenticated:
@@ -90,6 +94,11 @@ def add_product(request: HttpRequest):
             product = Product(**form.cleaned_data)
             product.user = request.user
             product.save()
+            messages.success(
+                request,
+                "Product successfully added",
+                extra_tags="product-saved",
+            )
             return redirect("product_details", pk=product.pk)
     else:
         form = ProductForm()
@@ -97,4 +106,11 @@ def add_product(request: HttpRequest):
         request,
         "products/product_form.html",
         context={"form": form},
+    )
+
+
+def get_user_products(request, username):
+    product_user = User.objects.get(username=username)
+    return render(
+        request, "products/user_products.html", context={"product_user": product_user}
     )

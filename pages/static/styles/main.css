@@ -199,10 +199,28 @@ article > header > h2 > a {
     font-weight: 500;
 }
 
-p.error {
+
+.flash-messages > div {
     font-size: 16px;
     font-weight: 600;
+    padding: 0.5rem 1rem;
+}
+
+.flash-messages > div:first-child {
+    margin-top: 1rem;
+}
+
+.flash-messages > div:last-child {
+    margin-bottom: 1rem;
+}
+
+.flash-messages > .error {
     border: 1px solid red;
     color: #cd1811;
-    padding: 4px 9px;
+}
+
+.flash-messages > .success {
+    border: 1px solid rgb(3, 84, 63);
+    color: rgb(3, 84, 63);
+    background-color: rgb(188, 240, 218);
 }
