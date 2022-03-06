@@ -2,6 +2,11 @@
 
 {% block content %}
     <h1>Ofertat e fundit</h1>
+    <div>
+        <button id="btn-getoffers">Get Offers</button>
+        <br>
+        <div id="latest-offers"></div>
+    </div>
     {% if request.session.user_agreed %}
         <h3>Thank you for agreeing to our privacy policy!</h3>
     {% endif %}
@@ -13,3 +18,33 @@
     <hr>
     <p>Only super users can enter here: <a href="{% url 'secret' %}">THE SECRET PAGE</a></p>
 {% endblock content %}
+
+{% block scripts %}
+<script>
+const url = "{% url 'latest_offers' %}";
+const btn = document.querySelector("#btn-getoffers");
+const latestOffersEl = document.querySelector("#latest-offers");
+
+btn.addEventListener("click", function (e) {
+    fetch(url)
+    .then(resp => resp.json())
+    .then(data => {
+        const elems = [
+            '<table>',
+            '<thead><tr><th>ID</th><th>Name</th><th>Price</th></tr></thead>',
+            '<tbody>'
+        ];
+
+        data.offers.forEach(p => {
+            elems.push(`<tr><td>${p.id}</td><td>${p.name}</td><td>${p.price}</td></tr>`)
+        });
+        elems.push('</tbody>');
+        elems.push('</table>');
+        latestOffersEl.innerHTML = elems.join("");
+    });
+}, false);
+
+
+
+</script>
+{% endblock scripts %}

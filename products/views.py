@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth import REDIRECT_FIELD_NAME, get_user_model
@@ -10,6 +10,7 @@ from django.contrib import messages
 
 from products.models import Category, Product, Review
 from products.forms import ProductForm, ReviewForm
+from products.serializers import ProductSerializer
 
 
 User = get_user_model()
@@ -114,3 +115,9 @@ def get_user_products(request, username):
     return render(
         request, "products/user_products.html", context={"product_user": product_user}
     )
+
+
+def get_latest_offers(request):
+    offers = Product.objects.filter(price__lt=100).order_by("-id")[:3]
+    ps = ProductSerializer(offers, many=True)
+    return JsonResponse(ps.data, safe=False)

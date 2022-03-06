@@ -12,6 +12,7 @@ urlpatterns = [
     path("products/", include("products.urls")),
     path("posts/", include("blog.urls")),
     path("users/<username>/products/", get_user_products, name="user_products"),
+    path("api/v1/", include("apiv1.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
 

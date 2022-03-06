@@ -5,6 +5,7 @@ Pygments==2.11.2
 django-debug-toolbar==3.2.4
 django-extensions==3.1.5
 fontawesomefree==6.0.0
+djangorestframework==3.13.1
 
 # development dependencies
 ipython==8.1.1

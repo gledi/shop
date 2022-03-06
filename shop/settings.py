@@ -30,10 +30,12 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_extensions",
     "fontawesomefree",
+    "rest_framework",
     # local apps
     "pages",
     "products",
     "blog",
+    "apiv1",
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,17 @@ LOGOUT_REDIRECT_URL = "/"
 INTERNAL_IPS = ["127.0.0.1"]
 
 SHELL_PLUS_PRINT_SQL = True
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser",
+        "rest_framework.parsers.MultiPartParser",
+        "rest_framework_xml.parsers.XMLParser",
+    ],
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+        "rest_framework_xml.renderers.XMLRenderer",
+    ],
+}
