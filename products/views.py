@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView
 from django.http import HttpRequest, JsonResponse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth import REDIRECT_FIELD_NAME, get_user_model
 from django.urls import reverse
@@ -87,7 +87,7 @@ def get_product_details(request: HttpRequest, pk):
     )
 
 
-@login_required
+@permission_required("products.add_product")
 def add_product(request: HttpRequest):
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
@@ -121,3 +121,12 @@ def get_latest_offers(request):
     offers = Product.objects.filter(price__lt=100).order_by("-id")[:3]
     ps = ProductSerializer(offers, many=True)
     return JsonResponse(ps.data, safe=False)
+
+
+@permission_required("products.offer_discount")
+def discount_product(request, pk):
+    if request.method == "POST":
+        product = Product.objects.get(pk=pk)
+        product.discount = 5
+        product.save()
+        return redirect("product_details", pk=product.pk)

@@ -8,6 +8,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255, null=False)
     code = models.CharField(max_length=12, null=False)
     price = models.DecimalField(max_digits=8, decimal_places=2)
+    discount = models.IntegerField(default=0)
     description = models.TextField(null=True)
     picture = models.ImageField(upload_to="products")
     category = models.ForeignKey("Category", null=True, on_delete=models.SET_NULL)
@@ -21,6 +22,7 @@ class Product(models.Model):
         verbose_name = "product"
         verbose_name_plural = "products"
         # db_table = "products"
+        permissions = (("offer_discount", "Can offer product discount"),)
 
     def __str__(self):
         return self.name

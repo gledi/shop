@@ -13,5 +13,6 @@ urlpatterns = [
         views.ProductDetailView.as_view(),
         name="product_details_alt",
     ),
+    path("<int:pk>/discount/", views.discount_product, name="discount_product"),
     path("latest/", views.get_latest_offers, name="latest_offers"),
 ]

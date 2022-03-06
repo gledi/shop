@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "fontawesomefree",
     "rest_framework",
+    "corsheaders",
     # local apps
     "pages",
     "products",
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -134,7 +136,7 @@ LOGOUT_REDIRECT_URL = "/"
 
 INTERNAL_IPS = ["127.0.0.1"]
 
-SHELL_PLUS_PRINT_SQL = True
+SHELL_PLUS_PRINT_SQL = False
 
 
 REST_FRAMEWORK = {
@@ -149,3 +151,6 @@ REST_FRAMEWORK = {
         "rest_framework_xml.renderers.XMLRenderer",
     ],
 }
+
+
+CORS_ALLOW_ALL_ORIGINS = True

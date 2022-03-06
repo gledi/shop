@@ -11,8 +11,17 @@
             height="256">
 <p class="">Kodi: {{ product.code }}</p>
 <p class="">${{ product.price }}</p>
+<p>
+    Discount: {{ product.discount }} 
+    <form method="post" action="{% url 'discount_product' pk=product.pk %}">
+        {% csrf_token %}
+        <button type="submit">Offer discount</button>
+    </form>
+</p>
 <p class="">{{ product.description }}</p>
+{% if product.user %}
 <p>Added by <a href="{% url 'user_products' username=product.user.username %}">{{ product.user.get_full_name }}</a></p>
+{% endif %}
 <hr>
 <h2>Reviews</h2>
 <form action="" method="post" novalidate>
