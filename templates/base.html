@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 {% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,7 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'product_list' %}">Catalogue</a></li>
+                <li><a href="{% url 'product_list' %}">{% translate "Catalogue" %}</a></li>
                 <li><a href="{% url 'blog:post_list' %}">Blog</a></li>
                 <li><a href="{% url 'page' page_name='about' %}">About Us</a></li>
                 <li><a href="{% url 'page' page_name='contact-us' %}">Contact Us</a></li>
@@ -38,8 +39,10 @@
                 <a href="{% url 'logout' %}">Logout</a>
             {% else %}
                 <a href="{% url 'login' %}">Login</a>
-                <a href="">Register</a>
+                <a href="">{% translate "Register" %}</a>
             {% endif %}
+            <a href="{% url 'switch_language' language='en-US' %}">{% trans "English" %}</a>
+            <a href="{% url 'switch_language' language='sq-AL' %}">{% trans "Albanian" %}</a>
         </section>
         {% comment %} <section class="search-global">
             <form action="" method="get">

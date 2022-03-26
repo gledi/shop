@@ -153,3 +153,7 @@ cython_debug/
 
 .DS_Store
 uploads/
+
+# SDA
+PythonTiranaAL4-FinalProjects.txt
+

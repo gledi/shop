@@ -1,3 +1,4 @@
+{% load i18n %}
 {% extends 'base.html' %}
 
 {% block content %}
@@ -23,7 +24,9 @@
         {% endif %}
     </div>
     {% endfor %}
-    <button type="submit">Comment</button>
+    <button type="submit">
+        {% trans "Comment" %}
+    </button>
 </form>
 
 {% for comment in comments %}

@@ -2,6 +2,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import user_passes_test
+from django.utils.translation import activate
+from django.conf import settings
 
 from pages.decorators import is_loggedin
 
@@ -42,3 +44,10 @@ def super_secret(request):
 def policy_agreement(request):
     request.session["user_agreed"] = True
     return redirect("page", page_name="privacy_policy")
+
+
+def switch_language(request: HttpRequest, language):
+    activate(language=language)
+    response = redirect(request.META["HTTP_REFERER"])
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+    return response

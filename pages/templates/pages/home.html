@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-    <h1>Ofertat e fundit</h1>
+    <h1>{% translate "Latest Offers" %}</h1>
     <div>
-        <button id="btn-getoffers">Get Offers</button>
+        <button id="btn-getoffers">{% translate "Retrieve Offers" %}</button>
         <br>
         <div id="latest-offers"></div>
     </div>

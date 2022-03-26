@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-26 09:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: blog/models.py:10
+msgid "title"
+msgstr "titulli"
+
+#: blog/models.py:12
+msgid "content"
+msgstr "permbajtja"
+
+#: blog/models.py:19
+msgid "post"
+msgstr "postim"
+
+#: blog/models.py:20
+msgid "posts"
+msgstr "postime"
+
+#: blog/templates/blog/post_details.html:28
+msgid "Comment"
+msgstr "komento"
+
+#: blog/views.py:28
+msgid "Post not found"
+msgstr "Postimi nuk u gjet"
+
+#: pages/templates/pages/home.html:5
+msgid "Latest Offers"
+msgstr "Ofertat e Reja"
+
+#: pages/templates/pages/home.html:7
+msgid "Retrieve Offers"
+msgstr "Merr Ofertat"
+
+#: templates/base.html:45
+msgid "English"
+msgstr "Anglisht"
+
+#: templates/base.html:46
+msgid "Albanian"
+msgstr "Shqip"

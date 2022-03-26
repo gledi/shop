@@ -1,22 +1,23 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import Truncator
+from django.utils.translation import gettext_lazy as _
 
 from utils.renderers import markdown
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=255, null=False)
+    title = models.CharField(_("title"), max_length=255, null=False)
     slug = models.SlugField(unique=True)
-    content = models.TextField(null=False)
+    content = models.TextField(_("content"), null=False)
     content_html = models.TextField(null=True, editable=False)
     published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "post"
-        verbose_name_plural = "posts"
+        verbose_name = _("post")
+        verbose_name_plural = _("posts")
 
     def __str__(self):
         return self.title

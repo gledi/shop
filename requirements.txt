@@ -4,7 +4,7 @@ mistune==2.0.2
 Pygments==2.11.2
 django-debug-toolbar==3.2.4
 django-extensions==3.1.5
-fontawesomefree==6.0.0
+fontawesomefree==6.1.1
 djangorestframework==3.13.1
 djangorestframework-xml==2.0.0
 django-cors-headers==3.11.0
@@ -13,4 +13,4 @@ django-cors-headers==3.11.0
 ipython==8.1.1
 black==22.1.0
 flake8==4.0.1
-Faker==13.3.0
+Faker==13.3.3
