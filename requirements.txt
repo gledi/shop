@@ -8,6 +8,8 @@ fontawesomefree==6.1.1
 djangorestframework==3.13.1
 djangorestframework-xml==2.0.0
 django-cors-headers==3.11.0
+django-heroku==0.3.1
+gunicorn==20.1.0
 
 # development dependencies
 ipython==8.1.1
