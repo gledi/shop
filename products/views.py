@@ -25,7 +25,7 @@ def get_products(request):
     # select * from products_category where is_active = 1
     categories = Category.objects.filter(is_active=True).all()
     # select id, name, slug, is_active from products_product
-    products = Product.objects.order_by("id").all()
+    products = Product.objects.order_by("-created_at").all()
 
     try:
         page_no = int(request.GET.get("page", "1"))
