@@ -41,8 +41,8 @@
                 <a href="{% url 'login' %}">Login</a>
                 <a href="">{% translate "Register" %}</a>
             {% endif %}
-            <a href="{% url 'switch_language' language='en-US' %}">{% trans "English" %}</a>
-            <a href="{% url 'switch_language' language='sq-AL' %}">{% trans "Albanian" %}</a>
+            <a href="{% url 'switch_language' language='en_us' %}">{% translate "English" %}</a>
+            <a href="{% url 'switch_language' language='sq_AL' %}">{% translate "Albanian" %}</a>
         </section>
         {% comment %} <section class="search-global">
             <form action="" method="get">
