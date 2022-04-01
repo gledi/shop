@@ -1,5 +1,5 @@
 Django==4.0.3
-Pillow==9.0.1
+Pillow==9.1.0
 mistune==2.0.2
 Pygments==2.11.2
 django-debug-toolbar==3.2.4

@@ -148,7 +148,6 @@ INTERNAL_IPS = ["127.0.0.1"]
 
 SHELL_PLUS_PRINT_SQL = False
 
-
 REST_FRAMEWORK = {
     "DEFAULT_PARSER_CLASSES": [
         "rest_framework.parsers.JSONParser",
@@ -162,8 +161,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-
 CORS_ALLOW_ALL_ORIGINS = True
-
 
 django_heroku.settings(locals())
