@@ -15,4 +15,5 @@ urlpatterns = [
     ),
     path("<int:pk>/discount/", views.discount_product, name="discount_product"),
     path("latest/", views.get_latest_offers, name="latest_offers"),
+    path("dump/", views.dump_products, name="dump_products"),
 ]

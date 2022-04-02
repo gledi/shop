@@ -1,12 +1,15 @@
+import io
+
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth import REDIRECT_FIELD_NAME, get_user_model
 from django.urls import reverse
 from django.contrib import messages
+import xlsxwriter
 
 from products.models import Category, Product, Review
 from products.forms import ProductForm, ReviewForm
@@ -130,3 +133,29 @@ def discount_product(request, pk):
         product.discount = 5
         product.save()
         return redirect("product_details", pk=product.pk)
+
+
+def dump_products(request):
+    products = Product.objects.all()
+    output = io.BytesIO()
+    wb = xlsxwriter.Workbook(output, {"in_memory": True})
+    ws = wb.add_worksheet("Products")
+    row = 0
+    for product in products:
+        ws.write(row, 0, product.pk)
+        ws.write(row, 1, product.name)
+
+        row += 1
+
+    wb.close()
+    output.seek(0)
+
+    response = HttpResponse(
+        output.read(),
+        content_type="application/vnd.ms-excel",
+    )
+    response["Content-Disposition"] = "attachment; filename=test.xlsx"
+
+    output.close()
+
+    return response
