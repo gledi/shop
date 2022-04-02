@@ -224,3 +224,21 @@ article > header > h2 > a {
     color: rgb(3, 84, 63);
     background-color: rgb(188, 240, 218);
 }
+
+.form-field {
+    border: 1px solid black;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-field > label {
+    display: inline-block;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.form-field > input[type=text] {
+    border: 2px solid green;
+    padding: 0.25rem;
+    outline: none;
+}

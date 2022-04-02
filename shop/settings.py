@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     # local apps
+    "accounts",
     "pages",
     "products",
     "blog",
@@ -149,6 +150,12 @@ INTERNAL_IPS = ["127.0.0.1"]
 SHELL_PLUS_PRINT_SQL = False
 
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+    # "DEFAULT_PERMISSION_CLASSES": [
+    #     "rest_framework.permissions.IsAuthenticated",
+    # ],
     "DEFAULT_PARSER_CLASSES": [
         "rest_framework.parsers.JSONParser",
         "rest_framework.parsers.MultiPartParser",
