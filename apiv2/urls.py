@@ -17,6 +17,7 @@ urlpatterns = [
         views.ProductDetailsView.as_view(),
         name="product_details",
     ),
+    path("prods/", views.ProductReviewView.as_view(), name="prod_list"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=["json", "xml", "html"])
