@@ -1,0 +1,8 @@
+-r test.txt
+
+django-debug-toolbar==3.8.1
+django-extensions==3.2.1
+ipython==8.9.0
+black==23.1.0
+flake8==6.0.0
+isort==5.12.0

@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from .decorators import manager_required
 
-from accounts.models import Employee
-
 
 @manager_required
 def manager_view(request):

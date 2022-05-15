@@ -20,17 +20,17 @@
 <body>
     <header>
         <h1>
-            <a href="{% url 'home' %}">{{ page_title }}</a>
+            <a href="{% url 'pages:home' %}">{{ page_title }}</a>
         </h1>
         {% comment %} nav>ul>li*5>a {% endcomment %}
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'product_list' %}">{% translate "Catalogue" %}</a></li>
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'products:product_list' %}">{% translate "Catalogue" %}</a></li>
                 <li><a href="{% url 'blog:post_list' %}">Blog</a></li>
-                <li><a href="{% url 'page' page_name='about' %}">About Us</a></li>
-                <li><a href="{% url 'page' page_name='contact-us' %}">Contact Us</a></li>
-                <li><a href="{% url 'page' page_name='privacy-policy' %}">Privacy Policy</a></li>
+                <li><a href="{% url 'pages:page' page_name='about' %}">About Us</a></li>
+                <li><a href="{% url 'pages:page' page_name='contact-us' %}">Contact Us</a></li>
+                <li><a href="{% url 'pages:page' page_name='privacy-policy' %}">Privacy Policy</a></li>
             </ul>
         </nav>
         <section class="user-info">
@@ -41,8 +41,8 @@
                 <a href="{% url 'login' %}">Login</a>
                 <a href="">{% translate "Register" %}</a>
             {% endif %}
-            <a href="{% url 'switch_language' language='en_us' %}">{% translate "English" %}</a>
-            <a href="{% url 'switch_language' language='sq_AL' %}">{% translate "Albanian" %}</a>
+            <a href="{% url 'pages:switch_language' language='en_us' %}">{% translate "English" %}</a>
+            <a href="{% url 'pages:switch_language' language='sq_AL' %}">{% translate "Albanian" %}</a>
         </section>
         {% comment %} <section class="search-global">
             <form action="" method="get">
