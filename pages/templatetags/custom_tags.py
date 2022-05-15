@@ -1,7 +1,7 @@
 from django import template
 from django.template.defaultfilters import stringfilter
 
-from ..constants import MESSAGE_ICONS
+from core.constants import MESSAGE_ICONS
 
 
 register = template.Library()

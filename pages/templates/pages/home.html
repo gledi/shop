@@ -12,17 +12,17 @@
         <h3>Thank you for agreeing to our privacy policy!</h3>
     {% endif %}
     <p>
-        <a href="{% url 'big_prize' %}">Click here to win prize!</a>
+        <a href="{% url 'pages:big_prize' %}">Click here to win prize!</a>
     </p>
     <p>You have visited this page {{ request.session.visits }} time{{ request.session.visits|pluralize }}</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil natus tempore fuga eaque impedit rem voluptatibus excepturi corrupti quos, debitis maiores beatae optio possimus cum quae quaerat dolorum quo officiis.</p>
     <hr>
-    <p>Only super users can enter here: <a href="{% url 'secret' %}">THE SECRET PAGE</a></p>
+    <p>Only super users can enter here: <a href="{% url 'pages:secret' %}">THE SECRET PAGE</a></p>
 {% endblock content %}
 
 {% block scripts %}
 <script>
-const url = "{% url 'latest_offers' %}";
+const url = "{% url 'apiv1:product_list' %}";
 const btn = document.querySelector("#btn-getoffers");
 const latestOffersEl = document.querySelector("#latest-offers");
 

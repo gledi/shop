@@ -7,7 +7,7 @@
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eligendi, vitae quaerat recusandae quidem amet provident nemo. Repellat, quae, eaque placeat quas magnam error iure repudiandae non velit, harum assumenda.</p>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ea iure nisi sed magnam eum voluptates explicabo dolor expedita exercitationem? Ullam consectetur, ea placeat a beatae dolorem quasi quas aperiam.</p>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis vero aliquam porro quos, optio quas tempore dolorum magnam omnis adipisci fugiat ullam, quia, esse illo. Voluptatibus fuga commodi nostrum magni.</p>
-<form method="post" action="{% url 'policy_agreement' %}">
+<form method="post" action="{% url 'pages:policy_agreement' %}">
     {% csrf_token %}
     Do you agree? <button type="submit">Yes</button>
 </form>

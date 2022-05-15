@@ -1,19 +1,18 @@
 from django.db import models
 from django.urls import reverse
-from django.utils.text import Truncator
+from django.utils.text import Truncator, slugify
 from django.utils.translation import gettext_lazy as _
 
+from core.models import BaseModel
 from utils.renderers import markdown
 
 
-class Post(models.Model):
+class Post(BaseModel):
     title = models.CharField(_("title"), max_length=255, null=False)
     slug = models.SlugField(unique=True)
     content = models.TextField(_("content"), null=False)
     content_html = models.TextField(null=True, editable=False)
     published = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = _("post")
@@ -23,6 +22,7 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
         self.content_html = markdown(self.content)
         return super().save(*args, **kwargs)
 
@@ -30,22 +30,27 @@ class Post(models.Model):
         return reverse("blog:post_details", kwargs={"slug": self.slug})
 
 
-class Comment(models.Model):
-    post = models.ForeignKey(Post, null=True, on_delete=models.SET_NULL)
-    comment = models.TextField(null=False)
-    approved = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+class Comment(BaseModel):
+    post = models.ForeignKey(
+        Post,
+        verbose_name=_("post"),
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="comments",
+    )
+    comment = models.TextField(_("comment"), null=False, blank=False)
+    approved = models.BooleanField(_("approved"), default=False)
 
     class Meta:
-        verbose_name = "comment"
-        verbose_name_plural = "comments"
         db_table = "comments"
+        verbose_name = _("comment")
+        verbose_name_plural = _("comments")
+        get_latest_by = ("-created_at",)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.short
 
     @property
-    def short(self):
+    def short(self) -> str:
         truncator = Truncator(self.comment)
-        return truncator.chars(20)
+        return truncator.chars(32)

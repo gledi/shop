@@ -3,7 +3,7 @@
 {% block content %}
 <div>
     <h1>Product Catalogue</h1>
-    <a href="{% url 'product_add' %}">Add new Product</a>
+    <a href="{% url 'products:product_add' %}">Add new Product</a>
 </div>
 <ul>
     {% for cat in categories %}
@@ -12,7 +12,7 @@
 </ul>
 
 {% for page in page_obj.paginator.page_range %}
-<a href="{% url 'product_list' %}?page={{ page }}">{{ page }}</a>
+<a href="{% url 'products:product_list' %}?page={{ page }}">{{ page }}</a>
 {% endfor %}
 
 <section class="product-list">
@@ -22,7 +22,7 @@
             alt="{{ product.name }}"
             width="256"
             height="256">
-        <a href="{% url 'product_details' pk=product.pk %}">{{ product.name }}</a>
+        <a href="{% url 'products:product_details' pk=product.pk %}">{{ product.name }}</a>
         <p class="product-item-code">Kodi: {{ product.code }}</p>
         <p class="product-item-price">${{ product.price }}</p>
     </div>

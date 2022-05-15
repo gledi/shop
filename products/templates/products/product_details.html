@@ -3,7 +3,7 @@
 {% block content %}
 <div class="product-details-header">
     <h1>{{ product.name }}</h1>
-    <a href="{% url 'product_list' %}">Back to Products</a>
+    <a href="{% url 'products:product_list' %}">Back to Products</a>
 </div>
 <img src="{{ product.picture.url }}"
             alt="{{ product.name }}"
@@ -13,14 +13,14 @@
 <p class="">${{ product.price }}</p>
 <p>
     Discount: {{ product.discount }} 
-    <form method="post" action="{% url 'discount_product' pk=product.pk %}">
+    <form method="post" action="{% url 'products:discount_product' pk=product.pk %}">
         {% csrf_token %}
         <button type="submit">Offer discount</button>
     </form>
 </p>
 <p class="">{{ product.description }}</p>
 {% if product.user %}
-<p>Added by <a href="{% url 'user_products' username=product.user.username %}">{{ product.user.get_full_name }}</a></p>
+<p>Added by <a href="{% url 'products:user_products' username=product.user.username %}">{{ product.user.get_full_name }}</a></p>
 {% endif %}
 <hr>
 <h2>Reviews</h2>

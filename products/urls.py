@@ -3,6 +3,8 @@ from django.urls import path
 from products import views
 
 
+app_name = "products"
+
 urlpatterns = [
     path("", views.get_products, name="product_list"),
     path("add/", views.add_product, name="product_add"),

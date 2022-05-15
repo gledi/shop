@@ -14,16 +14,14 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ReviewInline]
 
 
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name", "slug", "is_active")
     readonly_fields = ("slug",)
     list_editable = ("is_active",)
 
 
-admin.site.register(Category, CategoryAdmin)
-
-
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ["short_comment", "approved"]
-    list_editable = ["approved"]
+    list_display = ["short_comment", "is_approved"]
+    list_editable = ["is_approved"]

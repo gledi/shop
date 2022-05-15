@@ -77,7 +77,7 @@ def get_product_details(request: HttpRequest, pk):
     else:
         form = ReviewForm()
 
-    reviews = Review.objects.filter(approved=True).filter(product=product).all()
+    reviews = Review.objects.filter(is_approved=True).filter(product=product).all()
 
     return render(
         request,

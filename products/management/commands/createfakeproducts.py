@@ -1,11 +1,11 @@
 import io
 import random
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.core.files.images import ImageFile
 from faker import Faker
 
-from products.models import Category, Product
+from products.models import Category, Product, Picture
 
 
 class Command(BaseCommand):
@@ -34,10 +34,12 @@ class Command(BaseCommand):
                 max_value=5000,
             )
             product.description = fake.paragraph()
+            product.category = random.choice(cats)
+
             img = fake.image()
             filename = f'{product.name.replace(" ", "_")}.png'
-            product.picture = ImageFile(io.BytesIO(img), name=filename)
-            product.category = random.choice(cats)
+            picture = Picture(product=product, caption=fake.bs(), is_cover=True)
+            picture.picture = ImageFile(io.BytesIO(img), name=filename)
 
             products.append(product)
 
